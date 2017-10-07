@@ -1,0 +1,23 @@
+﻿<div ng-controller="mainController">
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student name </th>
+                <th>Student Last Name</th>
+                <th>StudentId</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="student in students" ng-click="crudOperation(student)">
+               
+                <td> {{student.StudentName}}</td>
+                <td> {{student.StudentLastName}}</td>
+                <td> {{student.StudentId}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+ 
+</div>
