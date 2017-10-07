@@ -5,7 +5,9 @@ var app = angular.module('app', ['ui.bootstrap']);
 
 app.controller('mainController', ['$scope', 'studentServise', '$modal', function (scope, studentServise, $modal) {
     scope.students = [];
- 
+    scope.test = function () {
+        alert();
+    }
     scope.init = function () {
 
         studentServise.getStudens()
@@ -22,16 +24,15 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
         scope.crudOperation(null, scope.init);
     }
 
-    scope.crudOperation = function (student, cb) {
+    scope.crudOperation = function (student) {
 
         $modal.open({
             templateUrl: '/HtmlTemplets/DialogHtml1.html',
             windowClass: 'modal', // windowClass - additional CSS class(es) to be added to a modal window template
             controller: function ($scope, $modalInstance, student, studentServise) {
                 $scope.student = student || {};
-
-                $scope.isHide = false;
-
+                $scope.callback = scope.init;
+      
                 if (!student)
                 {
                     $scope.isHide = true;
@@ -39,10 +40,10 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
                 }
 
                 $scope.createStudent = function () {
-           
+                 
                     studentServise.createStudent($scope.student)
                                   .then(function (result) {
-                                      cb();
+                                      $scope.callback();
                                   });
                 }
 
@@ -53,7 +54,7 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
                             .then(function (result) {
                                 if (result && result.data) {
                                     if (result.data.Success) {
-
+                                        $scope.callback();
                                         $modalInstance.close();
                                     } else {
                                         alert('Record has not changed')
@@ -73,7 +74,7 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
                         .then(function (result) {
                             if (result && result.data) {
                                 if (result.data.Success) {
-
+                                    $scope.callback();
                                     $modalInstance.close();
                                 } else {
                                     alert('Record has not changed')
@@ -91,8 +92,7 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
             resolve: {
                 student: function () {
                     return student;
-                }
-            
+                } 
             }
         });
 
