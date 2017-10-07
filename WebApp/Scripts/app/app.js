@@ -17,13 +17,34 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
 
     scope.init();
 
-    scope.crudOperation = function (student) {
+    scope.addStudent = function () {
+
+        scope.crudOperation(null, scope.init);
+    }
+
+    scope.crudOperation = function (student, cb) {
 
         $modal.open({
-            templateUrl: '/HtmlTemplets/DialogHtml.html',
+            templateUrl: '/HtmlTemplets/DialogHtml1.html',
             windowClass: 'modal', // windowClass - additional CSS class(es) to be added to a modal window template
             controller: function ($scope, $modalInstance, student, studentServise) {
-                $scope.student = student;
+                $scope.student = student || {};
+
+                $scope.isHide = false;
+
+                if (!student)
+                {
+                    $scope.isHide = true;
+                 
+                }
+
+                $scope.createStudent = function () {
+           
+                    studentServise.createStudent($scope.student)
+                                  .then(function (result) {
+                                      cb();
+                                  });
+                }
 
                 $scope.deleteStudent = function () {
 
@@ -71,6 +92,7 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
                 student: function () {
                     return student;
                 }
+            
             }
         });
 
@@ -101,10 +123,15 @@ app.factory('studentServise', ['$http', function (http) {
     var deleteStudent = function (student) {
         return httpRequestMgr('StudentDeletion', 'POST', student);
     }
+
+    var createStudent = function (student) {
+        return httpRequestMgr('StudentAdding', 'POST', student);
+    }
     return {
         getStudens: getStudens,
         updateStudent: updateStudent,
-        deleteStudent: deleteStudent
+        deleteStudent: deleteStudent,
+        createStudent: createStudent
     }
 }])
 
