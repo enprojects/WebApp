@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201710020749433_Removeproperty.Designer.cs">
       <DependentUpon>201710020749433_Removeproperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710081540598_PhoneNuberProperty.cs" />
+    <Compile Include="Migrations\201710081540598_PhoneNuberProperty.Designer.cs">
+      <DependentUpon>201710081540598_PhoneNuberProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710020749433_Removeproperty.resx">
       <DependentUpon>201710020749433_Removeproperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081540598_PhoneNuberProperty.resx">
+      <DependentUpon>201710081540598_PhoneNuberProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

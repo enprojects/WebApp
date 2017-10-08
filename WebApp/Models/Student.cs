@@ -11,5 +11,7 @@ namespace WebApp.Models
         public string StudentName { get; set; }
         public string StudentLastName { get; set; }
 
+        public string PhoneNumber { get; set; }
+
     }
 }
