@@ -19,8 +19,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <input ng-model="student.StudentLastName" type="text" />
-                <div class="alert alert-warning" ng-show="myForm.inputStudentName.$invalid && myForm.inputStudentName.$dirty">
+                <input ng-model="student.StudentLastName" type="text"  name="inputStudentLastName"
+                       required/>
+                <div class="alert alert-warning" ng-show="myForm.inputStudentLastName.$invalid && myForm.inputStudentLastName.$dirty">
                     This name is required
                 </div>
             </div>

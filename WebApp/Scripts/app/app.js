@@ -44,6 +44,7 @@ app.controller('mainController', ['$scope', 'studentServise', '$modal', function
                     studentServise.createStudent($scope.student)
                                   .then(function (result) {
                                       $scope.callback();
+                                      $modalInstance.close();
                                   });
                 }
 

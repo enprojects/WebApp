@@ -37,6 +37,7 @@ namespace WebApp.Controllers
             {
                 current.StudentLastName = student.StudentLastName;
                 current.StudentName = student.StudentName;
+                current.PhoneNumber = student.PhoneNumber;
             }
 
             var result = repository.Update();
